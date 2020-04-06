@@ -1,29 +1,22 @@
 package com.example.pavel_shumilin_shop
 
 import org.junit.Test
-
 import java.util.*
 import kotlin.math.truncate
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
-class ExampleUnitTest {
 
+class ExampleUnitTest {
     @Test
     fun example() {
-
         val iphoneCase = Product(price = 123.5, salePercent = 30)
+        val samsungCase = Product(price = 124.5, salePercent = 15)
 
-        var pricePrinter: PricePrinter = CleanKotlinPricePrinter()
+        val products = listOf(iphoneCase, samsungCase)
 
-        val discountIphoneCasePrice = iphoneCase.calcDiscountPrice()
-        pricePrinter.print(discountIphoneCasePrice)
+        val shoppingCart = ShoppingCart(products)
 
-        pricePrinter = MockPricePrinter()
-        pricePrinter.print(0.0)
+        val shoppingCartPrinter : ShoppingCartPrinter = ShoppingCartConsolePrinter()
+        shoppingCartPrinter.print(shoppingCart)
     }
 }
 
@@ -43,8 +36,39 @@ class Product(
     fun calcDiscountPrice(): Double = price * (1 - salePercent / 100.0)
 }
 
-interface PricePrinter {
+class ShoppingCart (
+    private val products: List<Product>
+) {
+    /**
+     * @return total price of products from the shopping cart with the applied discount
+     */
+    fun calcTotalPrice(): Double {
+        var totalPrice = 0.0
+        products.forEach {
+            totalPrice += it.calcDiscountPrice()
+        }
+        return totalPrice
+    }
 
+    fun getProducts(): List<Product> = products
+}
+
+interface ShoppingCartPrinter {
+    fun print(shoppingCart: ShoppingCart)
+}
+
+class ShoppingCartConsolePrinter : ShoppingCartPrinter {
+    override fun print(shoppingCart: ShoppingCart) {
+        val pricePrinter = ConsolePricePrinter()
+        shoppingCart.getProducts().forEach {
+            pricePrinter.print(it.calcDiscountPrice())
+        }
+        print("Total price: ")
+        pricePrinter.print(shoppingCart.calcTotalPrice())
+    }
+}
+
+interface PricePrinter {
     /**
      * Outputs price in <PRICE>₽ format.
      * If price have not fractional part than it will be printed as integer
@@ -53,19 +77,13 @@ interface PricePrinter {
     fun print(price: Double)
 }
 
-class CleanKotlinPricePrinter: PricePrinter {
+class ConsolePricePrinter : PricePrinter {
     override fun print(price: Double) {
         if (price == truncate(price)) {
             println("${price.toInt()}₽")
         }
         else {
-            println("%.2f₽".format(price))
+            println("%.2f₽".format(Locale.ENGLISH, price))
         }
-    }
-}
-
-class MockPricePrinter : PricePrinter {
-    override fun print(price: Double) {
-        println("9999999₽")
     }
 }
