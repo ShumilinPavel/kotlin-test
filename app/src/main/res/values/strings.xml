@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">pavel-shumilin-shop</string>
+    <string name="checkoutHeader">Оформление заказа</string>
+    <string name="checkoutMiddleName">Отчество</string>
+    <string name="checkoutClientDataTitle">Данные</string>
+    <string name="checkoutCartTitle">Корзина</string>
+    <string name="checkoutProductsText">Товары</string>
+    <string name="checkoutSaleText">Скидка</string>
+    <string name="checkoutFinalPriceText">Итоговая цена</string>
+    <string name="checkoutSurname">Фамилия</string>
+    <string name="checkoutName">Имя</string>
+    <string name="checkoutPhone">Телефон</string>
+    <string name="checkoutConfirm">Подтвердить</string>
 </resources>
