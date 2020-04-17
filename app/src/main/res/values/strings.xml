@@ -9,6 +9,6 @@
     <string name="checkoutFinalPriceText">Итоговая цена</string>
     <string name="checkoutSurname">Фамилия</string>
     <string name="checkoutName">Имя</string>
-    <string name="checkoutPhone">Телефон</string>
+    <string name="checkoutPhone">Телефон: 8(+7)**********</string>
     <string name="checkoutConfirm">Подтвердить</string>
 </resources>

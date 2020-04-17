@@ -8,15 +8,35 @@ import kotlin.math.truncate
 class ExampleUnitTest {
     @Test
     fun example() {
-        val iphoneCase = Product(price = 123.5, salePercent = 30)
-        val samsungCase = Product(price = 124.5, salePercent = 15)
+        val presenter = Presenter()
+        presenter.pricePrint()
+    }
+}
 
-        val products = listOf(iphoneCase, samsungCase)
+class Presenter {
+    private val iphoneCase = Product(price = 123.5, salePercent = 30, productName = "IPhone Case")
+    private val samsungCase = Product(price = 124.5, salePercent = 15, productName = "Samsung Case")
+    private val products = listOf(iphoneCase, samsungCase)
+    private val shoppingCart = ShoppingCart(products)
+    private val shoppingCartPrinter : ShoppingCartPrinter = ShoppingCartConsolePrinter()
+    private val pricePrinter = ConsolePricePrinter()
 
-        val shoppingCart = ShoppingCart(products)
+    fun pricePrint() {
+        // shoppingCartPrinter.print(shoppingCart)
+        // productNamePrint()
+        printProductInfo()
+    }
 
-        val shoppingCartPrinter : ShoppingCartPrinter = ShoppingCartConsolePrinter()
-        shoppingCartPrinter.print(shoppingCart)
+    fun productNamePrint() {
+        products.forEach {
+            pricePrinter.print(it.getProductName())
+        }
+    }
+
+    fun printProductInfo() {
+        products.forEach {
+            println("${it.getProductName()}: ${it.calcDiscountPrice()}")
+        }
     }
 }
 
@@ -25,7 +45,8 @@ class Product(
      * Must be positive
      */
     private val price: Double,
-    private val salePercent: Int = 0
+    private val salePercent: Int = 0,
+    private val productName: String
 ) {
     /**
      * @return price with applied discount determined by [salePercent]
@@ -34,6 +55,8 @@ class Product(
      * If [salePercent] less than 0 product price will be increased
      */
     fun calcDiscountPrice(): Double = price * (1 - salePercent / 100.0)
+
+    fun getProductName(): String = productName
 }
 
 class ShoppingCart (
@@ -75,6 +98,8 @@ interface PricePrinter {
      * If price have fractional part than it will be rounded for 2 symbols after "."
      */
     fun print(price: Double)
+
+    fun print(name: String)
 }
 
 class ConsolePricePrinter : PricePrinter {
@@ -85,5 +110,9 @@ class ConsolePricePrinter : PricePrinter {
         else {
             println("%.2f₽".format(Locale.ENGLISH, price))
         }
+    }
+
+    override fun print(name: String) {
+        println(name)
     }
 }
