@@ -1,23 +1,23 @@
 package com.example.pavel_shumilin_shop.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.View
 import android.widget.EditText
 import com.example.pavel_shumilin_shop.Product
 import com.example.pavel_shumilin_shop.ProductsView
 import com.example.pavel_shumilin_shop.R
-import com.example.pavel_shumilin_shop.ShoppingCartPresenter
-import kotlinx.android.synthetic.main.activity_main.*
+import com.example.pavel_shumilin_shop.CheckoutPresenter
+import kotlinx.android.synthetic.main.checkout_layout.*
 
 class CheckoutActivity : BaseActivity(), ProductsView {
-    private val presenter = ShoppingCartPresenter()
+    private val presenter = CheckoutPresenter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.checkout_layout)
 
         presenter.attachView(this)
         setListeners()
@@ -48,6 +48,10 @@ class CheckoutActivity : BaseActivity(), ProductsView {
     }
 
     private fun setListeners() {
+        checkoutBack.setOnClickListener {
+            finish()
+        }
+
         checkoutSurname.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                presenter.checkSurname(s.toString())

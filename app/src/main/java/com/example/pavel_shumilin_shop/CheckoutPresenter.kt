@@ -2,7 +2,7 @@ package com.example.pavel_shumilin_shop
 
 import moxy.MvpPresenter
 
-class ShoppingCartPresenter : MvpPresenter<ProductsView>() {
+class CheckoutPresenter : MvpPresenter<ProductsView>() {
 
     private val products: List<Product> = listOf(
         Product(price = 123.5, salePercent = 30, name = "IPhone Case"),

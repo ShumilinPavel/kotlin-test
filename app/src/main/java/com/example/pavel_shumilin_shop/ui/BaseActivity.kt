@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 abstract class BaseActivity : AppCompatActivity() {
     val tag = this.javaClass.simpleName
 
-    public override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // The activity is being created.
         Log.d(tag, "onCreate")
