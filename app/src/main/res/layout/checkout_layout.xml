@@ -202,4 +202,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkoutPhone" />
 
+    <ImageView
+        android:id="@+id/checkoutBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/checkoutHeader"
+        app:layout_constraintEnd_toStartOf="@+id/checkoutHeader"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/checkoutHeader"
+        app:srcCompat="@drawable/ic_arrow_back" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
