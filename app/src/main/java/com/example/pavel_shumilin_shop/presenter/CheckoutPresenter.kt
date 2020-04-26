@@ -1,12 +1,23 @@
-package com.example.pavel_shumilin_shop
+package com.example.pavel_shumilin_shop.presenter
 
+import com.example.pavel_shumilin_shop.Product
+import com.example.pavel_shumilin_shop.ProductsView
+import com.example.pavel_shumilin_shop.model.CreateOrderModel
 import moxy.MvpPresenter
 
 class CheckoutPresenter : MvpPresenter<ProductsView>() {
 
     private val products: List<Product> = listOf(
-        Product(price = 123.5, salePercent = 30, name = "IPhone Case"),
-        Product(price = 124.5, salePercent = 15, name = "Samsung Case")
+        Product(
+            price = 123.5,
+            salePercent = 30,
+            name = "IPhone Case"
+        ),
+        Product(
+            price = 124.5,
+            salePercent = 15,
+            name = "Samsung Case"
+        )
     )
     private val model = CreateOrderModel()
 
