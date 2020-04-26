@@ -11,4 +11,9 @@
     <string name="checkoutName">Имя</string>
     <string name="checkoutPhone">Телефон: 8(+7)**********</string>
     <string name="checkoutConfirm">Подтвердить</string>
+    <string name="cartHeader">Корзина</string>
+    <string name="cartCheckoutBtn">Оформление заказа</string>
+    <string name="catalogHeader">Каталог</string>
+    <string name="catalogCartBtn">Корзина</string>
+    <string name="detailedProductHeader">Детали продукта</string>
 </resources>

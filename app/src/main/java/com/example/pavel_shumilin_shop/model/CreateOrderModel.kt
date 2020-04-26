@@ -1,4 +1,4 @@
-package com.example.pavel_shumilin_shop
+package com.example.pavel_shumilin_shop.model
 
 /**
  * Модель для создания заказа

@@ -1,6 +1,5 @@
 package com.example.pavel_shumilin_shop.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -9,11 +8,12 @@ import android.widget.EditText
 import com.example.pavel_shumilin_shop.Product
 import com.example.pavel_shumilin_shop.ProductsView
 import com.example.pavel_shumilin_shop.R
-import com.example.pavel_shumilin_shop.CheckoutPresenter
+import com.example.pavel_shumilin_shop.presenter.CheckoutPresenter
 import kotlinx.android.synthetic.main.checkout_layout.*
 
 class CheckoutActivity : BaseActivity(), ProductsView {
-    private val presenter = CheckoutPresenter()
+    private val presenter =
+        CheckoutPresenter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
