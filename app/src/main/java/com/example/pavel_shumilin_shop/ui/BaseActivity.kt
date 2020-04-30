@@ -3,8 +3,9 @@ package com.example.pavel_shumilin_shop.ui
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import moxy.MvpAppCompatActivity
 
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : MvpAppCompatActivity() {
     val tag = this.javaClass.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {

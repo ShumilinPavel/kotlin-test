@@ -1,5 +1,6 @@
 package com.example.pavel_shumilin_shop
 
+import com.example.pavel_shumilin_shop.domain.model.Product
 import org.junit.Test
 import java.util.*
 import kotlin.math.truncate
@@ -14,8 +15,18 @@ class ExampleUnitTest {
 }
 
 class Presenter {
-    private val iphoneCase = Product(price = 123.5, salePercent = 30, productName = "IPhone Case")
-    private val samsungCase = Product(price = 124.5, salePercent = 15, productName = "Samsung Case")
+    private val iphoneCase =
+        com.example.pavel_shumilin_shop.domain.model.Product(
+            price = 123.5,
+            salePercent = 30,
+            productName = "IPhone Case"
+        )
+    private val samsungCase =
+        com.example.pavel_shumilin_shop.domain.model.Product(
+            price = 124.5,
+            salePercent = 15,
+            productName = "Samsung Case"
+        )
     private val products = listOf(iphoneCase, samsungCase)
     private val shoppingCart = ShoppingCart(products)
     private val shoppingCartPrinter : ShoppingCartPrinter = ShoppingCartConsolePrinter()

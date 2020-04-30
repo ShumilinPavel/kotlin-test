@@ -1,4 +1,4 @@
-package com.example.pavel_shumilin_shop
+package com.example.pavel_shumilin_shop.domain.model
 
 class Product(
     /**
@@ -6,7 +6,7 @@ class Product(
      */
     private val price: Double,
     private val salePercent: Int = 0,
-    private val name: String
+    private val productName: String
 ) {
     /**
      * @return price with applied discount determined by [salePercent]
@@ -18,5 +18,5 @@ class Product(
 
     fun getPrice(): Double = price
 
-    fun getName(): String = name
+    fun getProductName(): String = productName
 }

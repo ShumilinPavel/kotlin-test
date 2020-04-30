@@ -1,22 +1,23 @@
 package com.example.pavel_shumilin_shop.presenter
 
-import com.example.pavel_shumilin_shop.Product
-import com.example.pavel_shumilin_shop.ProductsView
-import com.example.pavel_shumilin_shop.model.CreateOrderModel
+import com.example.pavel_shumilin_shop.domain.model.Product
+import com.example.pavel_shumilin_shop.domain.model.CreateOrderModel
+import moxy.InjectViewState
 import moxy.MvpPresenter
 
-class CheckoutPresenter : MvpPresenter<ProductsView>() {
+@InjectViewState
+class ProductsPresenter : MvpPresenter<ProductsView>() {
 
     private val products: List<Product> = listOf(
         Product(
             price = 123.5,
             salePercent = 30,
-            name = "IPhone Case"
+            productName = "IPhone Case"
         ),
         Product(
             price = 124.5,
             salePercent = 15,
-            name = "Samsung Case"
+            productName = "Samsung Case"
         )
     )
     private val model = CreateOrderModel()
@@ -59,7 +60,7 @@ class CheckoutPresenter : MvpPresenter<ProductsView>() {
 
     fun printProductsInfo() {
         products.forEach {
-            viewState.print("${it.getName()}: ${it.calcDiscountPrice()}")
+            viewState.print("${it.getProductName()}: ${it.calcDiscountPrice()}")
         }
         printTotalPrice()
     }
@@ -73,7 +74,7 @@ class CheckoutPresenter : MvpPresenter<ProductsView>() {
 
     fun printProductNames() {
         products.forEach {
-            viewState.print(it.getName())
+            viewState.print(it.getProductName())
         }
     }
 

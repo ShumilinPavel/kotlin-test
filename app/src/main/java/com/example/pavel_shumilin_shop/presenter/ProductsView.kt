@@ -1,10 +1,9 @@
-package com.example.pavel_shumilin_shop
+package com.example.pavel_shumilin_shop.presenter
 
 import moxy.MvpView
 import moxy.viewstate.strategy.AddToEndSingleStrategy
 import moxy.viewstate.strategy.StateStrategyType
 
-@StateStrategyType(AddToEndSingleStrategy::class)
 interface ProductsView : MvpView {
     /**
      * Outputs price in <PRICE>₽ format.

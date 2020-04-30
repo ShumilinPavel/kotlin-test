@@ -5,33 +5,33 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.widget.EditText
-import com.example.pavel_shumilin_shop.Product
-import com.example.pavel_shumilin_shop.ProductsView
+import com.example.pavel_shumilin_shop.domain.model.Product
+import com.example.pavel_shumilin_shop.presenter.ProductsView
 import com.example.pavel_shumilin_shop.R
-import com.example.pavel_shumilin_shop.presenter.CheckoutPresenter
+import com.example.pavel_shumilin_shop.presenter.ProductsPresenter
 import kotlinx.android.synthetic.main.checkout_layout.*
+import moxy.ktx.moxyPresenter
 
-class CheckoutActivity : BaseActivity(), ProductsView {
-    private val presenter =
-        CheckoutPresenter()
+class CheckoutActivity : BaseActivity(),
+    ProductsView {
+    private val presenter by moxyPresenter { ProductsPresenter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.checkout_layout)
 
-        presenter.attachView(this)
         setListeners()
 
         val products = listOf(
             Product(
                 price = 123.5,
                 salePercent = 30,
-                name = "IPhone Case"
+                productName = "IPhone Case"
             ),
             Product(
                 price = 124.5,
                 salePercent = 15,
-                name = "Samsung Case"
+                productName = "Samsung Case"
             )
         )
 

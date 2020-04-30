@@ -1,19 +1,22 @@
-package com.example.pavel_shumilin_shop.ui
+package com.example.pavel_shumilin_shop.presenter
 
-import com.example.pavel_shumilin_shop.Product
+import com.example.pavel_shumilin_shop.domain.model.CartProduct
+import com.example.pavel_shumilin_shop.domain.model.Product
 import moxy.MvpView
 import moxy.viewstate.strategy.AddToEndSingleStrategy
 import moxy.viewstate.strategy.StateStrategyType
 
-@StateStrategyType(AddToEndSingleStrategy::class)
 interface CartView : MvpView {
 
     @StateStrategyType(AddToEndSingleStrategy::class)
-    fun setProductItems(products: List<Product>)
+    fun setProductItems(products: List<CartProduct>)
 
     @StateStrategyType(AddToEndSingleStrategy::class)
     fun removeProductItem(position: Int)
 
     @StateStrategyType(AddToEndSingleStrategy::class)
     fun addProductItem(position: Int)
+
+    @StateStrategyType(AddToEndSingleStrategy::class)
+    fun showProductDetailed(product: CartProduct)
 }

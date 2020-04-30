@@ -1,30 +1,34 @@
 package com.example.pavel_shumilin_shop.presenter
 
-import com.example.pavel_shumilin_shop.Product
-import com.example.pavel_shumilin_shop.ui.CartView
+import com.example.pavel_shumilin_shop.domain.ViewedProductDao
+import com.example.pavel_shumilin_shop.domain.model.CartProduct
+import com.example.pavel_shumilin_shop.domain.model.CartProductFactory
+import com.example.pavel_shumilin_shop.domain.model.Product
+import moxy.InjectViewState
 import moxy.MvpPresenter
 
-class CartPresenter : MvpPresenter<CartView>() {
+@InjectViewState
+class CartPresenter(
+    private val viewedProductDao: ViewedProductDao
+) : MvpPresenter<CartView>() {
 
-    var products = mutableListOf(
-        Product(100.0, 1, "Клавиатура"),
-        Product(200.0, 2, "Монитор"),
-        Product(300.0, 3, "Мышь"),
-        Product(400.0, 4, "Наушники"),
-        Product(500.0, 5, "Лампа"),
-        Product(600.0, 6, "Будильник"),
-        Product(700.0, 7, "Кабель"),
-        Product(800.0, 8, "Подставка"),
-        Product(900.0, 9, "Ноутбук"),
-        Product(1000.0, 10, "Видеокарта"),
-        Product(1100.0, 11, "Процессор")
+    private val factory = CartProductFactory()
+
+    private val products = mutableListOf(
+        factory.createCartProduct(1, "someProd0", "123321", 1200.0, 0),
+        factory.createCartProduct(2, "someProd1", "123321", 1200.0, 0),
+        factory.createCartProduct(3, "someProd2", "123321", 1200.0, 0),
+        factory.createCartProduct(4, "someProd3", "123321", 1200.0, 0),
+        factory.createCartProduct(5, "someProd4", "123321", 1200.0, 0),
+        factory.createCartProduct(6, "someProd5", "123321", 1200.0, 0)
     )
 
-    fun setProducts() {
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
         viewState.setProductItems(products)
     }
 
-    fun removeProduct(product: Product) {
+    fun removeProduct(product: CartProduct) {
         for (position in 0..products.size) {
             if (product == products[position]) {
                 products.removeAt(position)
@@ -34,10 +38,13 @@ class CartPresenter : MvpPresenter<CartView>() {
         }
     }
 
-    fun addProduct(product: Product) {
+    fun addProduct(product: CartProduct) {
         products.add(product)
         val position = products.lastIndex
         viewState.addProductItem(position)
     }
 
+    fun onProductClick(product: CartProduct) {
+        viewState.showProductDetailed(product)
+    }
 }
