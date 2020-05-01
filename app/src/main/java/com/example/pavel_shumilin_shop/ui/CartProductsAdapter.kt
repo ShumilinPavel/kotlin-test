@@ -4,17 +4,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pavel_shumilin_shop.Product
 import com.example.pavel_shumilin_shop.R
-import kotlinx.android.synthetic.main.item_cart.view.*
+import com.example.pavel_shumilin_shop.domain.model.CartProduct
+import kotlinx.android.extensions.LayoutContainer
+import kotlinx.android.synthetic.main.item_cart.*
+
 
 class CartProductsAdapter(
-    private val onDeleteClick: (product: Product) -> (Unit)
+    private val onDeleteClick: (product: CartProduct) -> (Unit),
+    private val onProductClick: (product: CartProduct) -> (Unit)
 ) : RecyclerView.Adapter<CartProductsAdapter.ViewHolder>() {
 
-    private var products: List<Product> = listOf()
+    private var products: List<CartProduct> = listOf()
 
-    fun setData(products: List<Product>) {
+    fun setData(products: List<CartProduct>) {
         this.products = products
         notifyDataSetChanged()
     }
@@ -28,14 +31,17 @@ class CartProductsAdapter(
         holder.bind(products[position])
     }
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(product: Product) {
-            itemView.itemCartName.text = product.getName()
-            itemView.itemCartPrice.text = product.calcDiscountPrice().toString()
-            itemView.itemCartDiscount.text = (product.getPrice() - product.calcDiscountPrice()).toString()
+    inner class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
+        fun bind(product: CartProduct) {
+            itemCartName.text = product.title
+            itemCartPrice.text = product.lot.calcDiscountPrice().toString()
+            itemCartDiscount.text = (product.lot.price - product.lot.calcDiscountPrice()).toString()
 
-            itemView.itemCartDelete.setOnClickListener {
+            itemCartDelete.setOnClickListener {
                 onDeleteClick(product)
+            }
+            containerView.setOnClickListener {
+                onProductClick(product)
             }
         }
     }

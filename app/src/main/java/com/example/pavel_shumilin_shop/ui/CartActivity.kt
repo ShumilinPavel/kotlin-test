@@ -1,30 +1,43 @@
 package com.example.pavel_shumilin_shop.ui
 
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.pavel_shumilin_shop.Product
 import com.example.pavel_shumilin_shop.R
+import com.example.pavel_shumilin_shop.data.ViewedProductDaoImpl
+import com.example.pavel_shumilin_shop.domain.model.CartProduct
+import com.example.pavel_shumilin_shop.domain.model.CartProductFactory
 import com.example.pavel_shumilin_shop.presenter.CartPresenter
+import com.example.pavel_shumilin_shop.presenter.CartView
+import com.example.pavel_shumilin_shop.ui.DetailedActivity.Companion.PRODUCT_TAG
 import kotlinx.android.synthetic.main.cart_layout.*
+import kotlinx.android.synthetic.main.catalog_layout.*
+import moxy.ktx.moxyPresenter
 
 class CartActivity : BaseActivity(), CartView {
 
-    private val presenter = CartPresenter()
-    private val adapter =  CartProductsAdapter {  product ->
-        presenter.removeProduct(product)
+    private val presenter by moxyPresenter {
+        CartPresenter(ViewedProductDaoImpl(sharedPreferences))
     }
+    private val adapter =  CartProductsAdapter (
+        { product ->
+            presenter.removeProduct(product)
+        },
+        { product ->
+            presenter.onProductClick(product)
+        }
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.cart_layout)
-        setListeners()
 
+        setListeners()
         cartProductsRv.layoutManager = LinearLayoutManager(this)
         cartProductsRv.adapter = adapter
-
-        presenter.attachView(this)
-        presenter.setProducts()
     }
 
     private fun setListeners() {
@@ -37,12 +50,15 @@ class CartActivity : BaseActivity(), CartView {
             startActivity(intent)
         }
 
+        val factory = CartProductFactory()
         cartAddProductItemBtn.setOnClickListener {
-            presenter.addProduct(Product(1000.0, 10, "Новый продукт"))
+            presenter.addProduct(
+               factory.createCartProduct(999, "Новый продукт", "123321", 1200.0, 0)
+            )
         }
     }
 
-    override fun setProductItems(products: List<Product>) {
+    override fun setProductItems(products: List<CartProduct>) {
         adapter.setData(products)
     }
 
@@ -52,5 +68,11 @@ class CartActivity : BaseActivity(), CartView {
 
     override fun addProductItem(position: Int) {
         adapter.notifyItemInserted(position)
+    }
+
+    override fun showProductDetailed(product: CartProduct) {
+        startActivity(Intent(this, DetailedActivity::class.java).apply {
+            putExtra(PRODUCT_TAG, product)
+        })
     }
 }

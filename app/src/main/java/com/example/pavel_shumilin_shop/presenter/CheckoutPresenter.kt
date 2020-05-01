@@ -1,24 +1,25 @@
 package com.example.pavel_shumilin_shop.presenter
 
-import com.example.pavel_shumilin_shop.Product
-import com.example.pavel_shumilin_shop.ProductsView
-import com.example.pavel_shumilin_shop.model.CreateOrderModel
+import com.example.pavel_shumilin_shop.domain.model.CreateOrderModel
+import moxy.InjectViewState
 import moxy.MvpPresenter
 
-class CheckoutPresenter : MvpPresenter<ProductsView>() {
+@InjectViewState
+class CheckoutPresenter : MvpPresenter<CheckoutView>() {
 
-    private val products: List<Product> = listOf(
-        Product(
-            price = 123.5,
-            salePercent = 30,
-            name = "IPhone Case"
-        ),
-        Product(
-            price = 124.5,
-            salePercent = 15,
-            name = "Samsung Case"
-        )
-    )
+//    private val products: List<Product> = listOf(
+//        Product(
+//            price = 123.5,
+//            salePercent = 30,
+//            productName = "IPhone Case"
+//        ),
+//        Product(
+//            price = 124.5,
+//            salePercent = 15,
+//            productName = "Samsung Case"
+//        )
+//    )
+
     private val model = CreateOrderModel()
 
     fun checkSurname(text: String) {
@@ -57,25 +58,25 @@ class CheckoutPresenter : MvpPresenter<ProductsView>() {
 
 
 
-    fun printProductsInfo() {
-        products.forEach {
-            viewState.print("${it.getName()}: ${it.calcDiscountPrice()}")
-        }
-        printTotalPrice()
-    }
-
-    /**
-     * print total price of products from the shopping cart with the applied discount
-     */
-    fun printTotalPrice() {
-        viewState.print(products.sumByDouble { it.calcDiscountPrice() })
-    }
-
-    fun printProductNames() {
-        products.forEach {
-            viewState.print(it.getName())
-        }
-    }
-
-    fun getProducts(): List<Product> = products
+//    fun printProductsInfo() {
+//        products.forEach {
+//            viewState.print("${it.getProductName()}: ${it.calcDiscountPrice()}")
+//        }
+//        printTotalPrice()
+//    }
+//
+//    /**
+//     * print total price of products from the shopping cart with the applied discount
+//     */
+//    fun printTotalPrice() {
+//        viewState.print(products.sumByDouble { it.calcDiscountPrice() })
+//    }
+//
+//    fun printProductNames() {
+//        products.forEach {
+//            viewState.print(it.getProductName())
+//        }
+//    }
+//
+//    fun getProducts(): List<Product> = products
 }
