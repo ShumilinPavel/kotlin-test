@@ -9,7 +9,7 @@ class CatalogPresenter(
     private val viewedProductDao: ViewedProductDao
 ) : MvpPresenter<CatalogView>() {
 
-    private val list = mutableListOf(
+    private val categories = mutableListOf(
         "Телевизоры",
         "Телефоны",
         "Планшеты",
@@ -20,7 +20,7 @@ class CatalogPresenter(
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        setData()
+        viewState.setCategories(categories)
     }
 
     override fun attachView(view: CatalogView?) {
@@ -29,13 +29,9 @@ class CatalogPresenter(
         viewState.showProductIds(productIds)
     }
 
-    fun setData() {
-        viewState.setCategories(list)
-    }
-
     fun removeItem(category: String) {
-        val position = list.indexOf(category)
-        list.remove(category)
+        val position = categories.indexOf(category)
+        categories.remove(category)
         viewState.removeItem(position)
     }
 

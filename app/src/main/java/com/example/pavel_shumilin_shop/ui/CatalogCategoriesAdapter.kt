@@ -9,9 +9,9 @@ import com.example.pavel_shumilin_shop.R
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_category.*
 
-class CategoryAdapter(
+class CatalogCategoriesAdapter(
     private val onDeleteClick: (string: String) -> Unit
-) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<CatalogCategoriesAdapter.ViewHolder>() {
 
     private var categories: List<String> = listOf()
 
@@ -20,7 +20,7 @@ class CategoryAdapter(
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatalogCategoriesAdapter.ViewHolder {
         Log.d("Adapter", "onCreateViewHolder")
         return ViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.item_category, parent, false)

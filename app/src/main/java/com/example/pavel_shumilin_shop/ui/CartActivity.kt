@@ -6,7 +6,6 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.pavel_shumilin_shop.domain.model.Product
 import com.example.pavel_shumilin_shop.R
 import com.example.pavel_shumilin_shop.data.ViewedProductDaoImpl
 import com.example.pavel_shumilin_shop.domain.model.CartProduct

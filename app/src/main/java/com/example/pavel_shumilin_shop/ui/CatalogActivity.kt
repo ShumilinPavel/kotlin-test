@@ -10,8 +10,10 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.pavel_shumilin_shop.R
 import com.example.pavel_shumilin_shop.data.ViewedProductDaoImpl
+import com.example.pavel_shumilin_shop.domain.model.CartProduct
 import com.example.pavel_shumilin_shop.presenter.CatalogPresenter
 import com.example.pavel_shumilin_shop.presenter.CatalogView
 import moxy.ktx.moxyPresenter
@@ -23,9 +25,10 @@ class CatalogActivity : BaseActivity(), CatalogView {
         CatalogPresenter(ViewedProductDaoImpl(sharedPreferences))
     }
 
-    private val adapter = CategoryAdapter { category ->
+    private val categoriesAdapter = CatalogCategoriesAdapter { category ->
         presenter.removeItem(category)
     }
+    private val viewedProductsAdapter = CatalogViewedProductsAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +46,9 @@ class CatalogActivity : BaseActivity(), CatalogView {
         }
 
         categoryRv.layoutManager = LinearLayoutManager(this)
-        categoryRv.adapter = adapter
+        categoryRv.adapter = categoriesAdapter
+        viewedProductsRv.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
+        viewedProductsRv.adapter = viewedProductsAdapter
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -60,15 +65,16 @@ class CatalogActivity : BaseActivity(), CatalogView {
     }
 
     override fun setCategories(list: List<String>) {
-        adapter.setData(list)
+        categoriesAdapter.setData(list)
     }
 
     override fun removeItem(position: Int) {
-        adapter.notifyItemRemoved(position)
+        categoriesAdapter.notifyItemRemoved(position)
     }
 
     override fun showProductIds(productIds: List<Long>) {
-        Toast.makeText(this, productIds.joinToString(","), Toast.LENGTH_LONG).show()
+        // Toast.makeText(this, productIds.joinToString(","), Toast.LENGTH_LONG).show()
+        viewedProductsAdapter.setData(productIds)
     }
 
     companion object {

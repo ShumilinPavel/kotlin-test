@@ -1,5 +1,6 @@
 package com.example.pavel_shumilin_shop.presenter
 
+import com.example.pavel_shumilin_shop.domain.model.CartProduct
 import moxy.MvpView
 import moxy.viewstate.strategy.AddToEndSingleStrategy
 import moxy.viewstate.strategy.OneExecutionStateStrategy
