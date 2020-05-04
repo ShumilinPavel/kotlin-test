@@ -1,22 +1,21 @@
 package com.example.pavel_shumilin_shop.ui
 
-import kotlinx.android.synthetic.main.catalog_layout.*
-
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pavel_shumilin_shop.R
 import com.example.pavel_shumilin_shop.data.ViewedProductDaoImpl
-import com.example.pavel_shumilin_shop.domain.model.CartProduct
+import com.example.pavel_shumilin_shop.domain.MainApi
 import com.example.pavel_shumilin_shop.presenter.CatalogPresenter
 import com.example.pavel_shumilin_shop.presenter.CatalogView
+import kotlinx.android.synthetic.main.catalog_layout.*
 import moxy.ktx.moxyPresenter
+import retrofit2.Retrofit
 
 
 class CatalogActivity : BaseActivity(), CatalogView {

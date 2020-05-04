@@ -18,4 +18,7 @@ interface CartView : MvpView {
 
     @StateStrategyType(AddToEndSingleStrategy::class)
     fun showProductDetailed(product: CartProduct)
+
+    @StateStrategyType(AddToEndSingleStrategy::class)
+    fun showToastMessage(message: String)
 }
