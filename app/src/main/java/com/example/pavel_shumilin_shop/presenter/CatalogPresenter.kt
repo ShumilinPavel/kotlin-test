@@ -1,5 +1,6 @@
 package com.example.pavel_shumilin_shop.presenter
 
+import com.example.pavel_shumilin_shop.domain.MainApi
 import com.example.pavel_shumilin_shop.domain.ViewedProductDao
 import moxy.InjectViewState
 import moxy.MvpPresenter

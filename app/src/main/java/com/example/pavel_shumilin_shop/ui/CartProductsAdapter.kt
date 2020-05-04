@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pavel_shumilin_shop.R
+import com.example.pavel_shumilin_shop.domain.PriceFormatter
 import com.example.pavel_shumilin_shop.domain.model.CartProduct
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_cart.*
@@ -16,6 +17,7 @@ class CartProductsAdapter(
 ) : RecyclerView.Adapter<CartProductsAdapter.ViewHolder>() {
 
     private var products: List<CartProduct> = listOf()
+    private val priceFormatter = PriceFormatter()
 
     fun setData(products: List<CartProduct>) {
         this.products = products
@@ -34,8 +36,8 @@ class CartProductsAdapter(
     inner class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
         fun bind(product: CartProduct) {
             itemCartName.text = product.title
-            itemCartPrice.text = product.lot.calcDiscountPrice().toString()
-            itemCartDiscount.text = (product.lot.price - product.lot.calcDiscountPrice()).toString()
+            itemCartPrice.text = priceFormatter.format(product.lot.calcDiscountPrice())
+            itemCartDiscount.text = priceFormatter.format(product.lot.price - product.lot.calcDiscountPrice())
 
             itemCartDelete.setOnClickListener {
                 onDeleteClick(product)
