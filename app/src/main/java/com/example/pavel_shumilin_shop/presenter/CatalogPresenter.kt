@@ -2,13 +2,17 @@ package com.example.pavel_shumilin_shop.presenter
 
 import com.example.pavel_shumilin_shop.domain.MainApi
 import com.example.pavel_shumilin_shop.domain.ViewedProductDao
+import com.example.pavel_shumilin_shop.domain.interactor.AddProductToCartUseCase
+import kotlinx.coroutines.launch
 import moxy.InjectViewState
 import moxy.MvpPresenter
+import javax.inject.Inject
 
 @InjectViewState
-class CatalogPresenter(
-    private val viewedProductDao: ViewedProductDao
-) : MvpPresenter<CatalogView>() {
+class CatalogPresenter @Inject constructor(
+    private val viewedProductDao: ViewedProductDao,
+    private val addProductToCartUseCase: AddProductToCartUseCase
+) : BasePresenter<CatalogView>() {
 
     private val categories = mutableListOf(
         "Телевизоры",
@@ -36,4 +40,9 @@ class CatalogPresenter(
         viewState.removeItem(position)
     }
 
+    fun addProductToCart() {
+        launch {
+            addProductToCartUseCase()
+        }
+    }
 }

@@ -8,6 +8,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pavel_shumilin_shop.App
 import com.example.pavel_shumilin_shop.R
 import com.example.pavel_shumilin_shop.data.ViewedProductDaoImpl
 import com.example.pavel_shumilin_shop.domain.MainApi
@@ -16,20 +17,24 @@ import com.example.pavel_shumilin_shop.presenter.CatalogView
 import kotlinx.android.synthetic.main.catalog_layout.*
 import moxy.ktx.moxyPresenter
 import retrofit2.Retrofit
+import javax.inject.Inject
 
 
 class CatalogActivity : BaseActivity(), CatalogView {
 
-    private val presenter by moxyPresenter {
-        CatalogPresenter(ViewedProductDaoImpl(sharedPreferences))
-    }
+    @Inject
+    lateinit var catalogPresenter: CatalogPresenter
+
+    private val presenter by moxyPresenter { catalogPresenter }
 
     private val categoriesAdapter = CatalogCategoriesAdapter { category ->
         presenter.removeItem(category)
     }
+
     private val viewedProductsAdapter = CatalogViewedProductsAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        App.appComponent.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.catalog_layout)
 

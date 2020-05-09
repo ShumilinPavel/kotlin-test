@@ -2,23 +2,27 @@ package com.example.pavel_shumilin_shop.ui
 
 import android.os.Bundle
 import com.bumptech.glide.Glide
+import com.example.pavel_shumilin_shop.App
 import com.example.pavel_shumilin_shop.R
 import com.example.pavel_shumilin_shop.data.ViewedProductDaoImpl
 import com.example.pavel_shumilin_shop.domain.model.CartProduct
-import com.example.pavel_shumilin_shop.presenter.DetailedPresenter
+import com.example.pavel_shumilin_shop.presenter.DetailedPresenter.DetailedPresenterFactory
 import com.example.pavel_shumilin_shop.presenter.DetailedView
 import kotlinx.android.synthetic.main.detailed_layout.*
 import moxy.ktx.moxyPresenter
+import javax.inject.Inject
+import javax.inject.Named
 
 class DetailedActivity : BaseActivity(), DetailedView {
 
-    private val presenter by moxyPresenter {
-        DetailedPresenter(
-            ViewedProductDaoImpl(sharedPreferences)
-        )
-    }
+    @Inject
+//    @Named(value = "")
+    lateinit var detailedPresenterFactory: DetailedPresenterFactory
+
+    private val presenter by moxyPresenter { detailedPresenterFactory.create(productId = "") }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        App.appComponent.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.detailed_layout)
 

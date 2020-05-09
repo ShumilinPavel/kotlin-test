@@ -7,9 +7,11 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.pavel_shumilin_shop.App
 import com.example.pavel_shumilin_shop.R
 import com.example.pavel_shumilin_shop.data.ViewedProductDaoImpl
 import com.example.pavel_shumilin_shop.domain.MainApi
+import com.example.pavel_shumilin_shop.domain.ViewedProductDao
 import com.example.pavel_shumilin_shop.domain.model.CartProduct
 import com.example.pavel_shumilin_shop.domain.model.CartProductFactory
 import com.example.pavel_shumilin_shop.presenter.CartPresenter
@@ -20,18 +22,20 @@ import kotlinx.android.synthetic.main.catalog_layout.*
 import moxy.ktx.moxyPresenter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
 class CartActivity : BaseActivity(), CartView {
 
+    @Inject
+    lateinit var mainApi: MainApi
+
+    @Inject
+    lateinit var viewedProductDao: ViewedProductDao
+
     private val presenter by moxyPresenter {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://207.254.71.167:9191")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-        val service = retrofit.create(MainApi::class.java)
         CartPresenter(
-            mainApi = service,
-            viewedProductDao = ViewedProductDaoImpl(sharedPreferences)
+            mainApi = mainApi,
+            viewedProductDao = viewedProductDao
         )
     }
     private val adapter =  CartProductsAdapter (
@@ -44,6 +48,7 @@ class CartActivity : BaseActivity(), CartView {
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        App.appComponent.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.cart_layout)
 
