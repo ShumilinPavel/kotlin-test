@@ -3,9 +3,9 @@ package com.example.pavel_shumilin_shop.di
 import android.content.Context
 import com.example.pavel_shumilin_shop.di.modules.MainApiModule
 import com.example.pavel_shumilin_shop.di.modules.PreferencesModule
-import com.example.pavel_shumilin_shop.ui.CartActivity
-import com.example.pavel_shumilin_shop.ui.CatalogActivity
-import com.example.pavel_shumilin_shop.ui.DetailedActivity
+import com.example.pavel_shumilin_shop.ui.cart.CartActivity
+import com.example.pavel_shumilin_shop.ui.catalog.CatalogActivity
+import com.example.pavel_shumilin_shop.ui.detailed.DetailedActivity
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton

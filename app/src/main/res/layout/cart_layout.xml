@@ -43,18 +43,9 @@
         android:id="@+id/cartCheckoutBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
         android:text="@string/cartCheckoutBtn"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/cartAddProductItemBtn"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/cartAddProductItemBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Добавить продукт"
-        app:layout_constraintBottom_toBottomOf="@+id/cartCheckoutBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/cartCheckoutBtn" />
 </androidx.constraintlayout.widget.ConstraintLayout>

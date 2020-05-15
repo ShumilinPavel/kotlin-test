@@ -1,4 +1,4 @@
-package com.example.pavel_shumilin_shop.ui
+package com.example.pavel_shumilin_shop.ui.cart
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,25 +6,25 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pavel_shumilin_shop.R
 import com.example.pavel_shumilin_shop.domain.PriceFormatter
-import com.example.pavel_shumilin_shop.domain.model.CartProduct
+import com.example.pavel_shumilin_shop.domain.model.Product
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_cart.*
 
 
 class CartProductsAdapter(
-    private val onDeleteClick: (product: CartProduct) -> (Unit),
-    private val onProductClick: (product: CartProduct) -> (Unit)
+    private val onDeleteClick: (product: Product) -> (Unit),
+    private val onProductClick: (product: Product) -> (Unit)
 ) : RecyclerView.Adapter<CartProductsAdapter.ViewHolder>() {
 
-    private var products: List<CartProduct> = listOf()
+    private var products: List<Product> = listOf()
     private val priceFormatter = PriceFormatter()
 
-    fun setData(products: List<CartProduct>) {
+    fun setData(products: List<Product>) {
         this.products = products
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartProductsAdapter.ViewHolder =
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_cart, parent, false))
 
     override fun getItemCount(): Int = products.size
@@ -34,10 +34,10 @@ class CartProductsAdapter(
     }
 
     inner class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
-        fun bind(product: CartProduct) {
-            itemCartName.text = product.title
-            itemCartPrice.text = priceFormatter.format(product.lot.calcDiscountPrice())
-            itemCartDiscount.text = priceFormatter.format(product.lot.price - product.lot.calcDiscountPrice())
+        fun bind(product: Product) {
+            itemCartName.text = product.name
+            itemCartPrice.text = priceFormatter.format(product.calcDiscountPrice())
+            itemCartDiscount.text = priceFormatter.format(product.price - product.calcDiscountPrice())
 
             itemCartDelete.setOnClickListener {
                 onDeleteClick(product)

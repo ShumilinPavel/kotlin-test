@@ -3,7 +3,6 @@ package com.example.pavel_shumilin_shop.data
 import android.content.SharedPreferences
 import androidx.core.content.edit
 import com.example.pavel_shumilin_shop.domain.ViewedProductDao
-import com.example.pavel_shumilin_shop.domain.model.CartProduct
 
 class ViewedProductDaoImpl(
     private val sharedPreferences: SharedPreferences

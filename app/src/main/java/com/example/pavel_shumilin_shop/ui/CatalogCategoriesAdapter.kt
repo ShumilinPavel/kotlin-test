@@ -20,7 +20,7 @@ class CatalogCategoriesAdapter(
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatalogCategoriesAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         Log.d("Adapter", "onCreateViewHolder")
         return ViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.item_category, parent, false)

@@ -1,11 +1,10 @@
-package com.example.pavel_shumilin_shop.ui
+package com.example.pavel_shumilin_shop.ui.catalog
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pavel_shumilin_shop.R
-import com.example.pavel_shumilin_shop.domain.model.CartProduct
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_viewed_product.*
 

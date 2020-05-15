@@ -1,4 +1,4 @@
-package com.example.pavel_shumilin_shop.presenter
+package com.example.pavel_shumilin_shop.presenter.checkout
 
 import moxy.MvpView
 import moxy.viewstate.strategy.AddToEndSingleStrategy
@@ -21,9 +21,6 @@ interface CheckoutView : MvpView {
 
     @StateStrategyType(AddToEndSingleStrategy::class)
     fun showErrorForName(visible: Boolean)
-
-    @StateStrategyType(AddToEndSingleStrategy::class)
-    fun showErrorForMiddleName(visible: Boolean)
 
     @StateStrategyType(AddToEndSingleStrategy::class)
     fun showErrorForPhone(visible: Boolean)

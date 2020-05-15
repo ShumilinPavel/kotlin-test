@@ -1,4 +1,4 @@
-package com.example.pavel_shumilin_shop.presenter
+package com.example.pavel_shumilin_shop.presenter.checkout
 
 import com.example.pavel_shumilin_shop.domain.model.CreateOrderModel
 import moxy.InjectViewState
@@ -32,12 +32,6 @@ class CheckoutPresenter : MvpPresenter<CheckoutView>() {
         val isValid = validateTextLength(text)
         if (isValid) model.name = text
         viewState.showErrorForName(!isValid)
-    }
-
-    fun checkMiddleName(text: String) {
-        val isValid = validateTextLength(text)
-        if (isValid) model.middleName = text
-        viewState.showErrorForMiddleName(!isValid)
     }
 
     private fun validateTextLength(text: String): Boolean = text.length >= 3
