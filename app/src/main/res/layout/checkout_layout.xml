@@ -11,7 +11,21 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".ui.checkout.CheckoutActivity">
+        tools:context=".ui.checkout.CheckoutActivity"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/checkout_toolbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_arrow_back_black" />
 
         <TextView
             android:id="@+id/checkoutClientDataTitle"
@@ -27,18 +41,6 @@
             app:layout_constraintTop_toBottomOf="@+id/checkoutFinalPriceText" />
 
         <TextView
-            android:id="@+id/checkoutHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/checkoutHeader"
-            android:textColor="#000"
-            android:textSize="30sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
             android:id="@+id/checkoutCartTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,7 +51,7 @@
             android:textColor="@android:color/black"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkoutHeader" />
+            app:layout_constraintTop_toBottomOf="@+id/checkout_toolbar" />
 
         <TextView
             android:id="@+id/checkoutProductsText"
@@ -68,12 +70,12 @@
             android:id="@+id/checkoutProductsPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="184dp"
-            android:layout_marginLeft="184dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
             android:textColor="@android:color/black"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/checkoutProductsText"
-            app:layout_constraintStart_toEndOf="@+id/checkoutProductsText"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/checkoutProductsText"
             app:layout_constraintVertical_bias="0.0"
             tools:text="1000" />
@@ -95,12 +97,12 @@
             android:id="@+id/checkoutSaleAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="196dp"
-            android:layout_marginLeft="196dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
             android:textColor="@android:color/black"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/checkoutSaleText"
-            app:layout_constraintStart_toEndOf="@+id/checkoutSaleText"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/checkoutSaleText"
             app:layout_constraintVertical_bias="0.0"
             tools:text="200" />
@@ -122,12 +124,12 @@
             android:id="@+id/checkoutFinalPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="124dp"
-            android:layout_marginLeft="124dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/checkoutFinalPriceText"
-            app:layout_constraintStart_toEndOf="@+id/checkoutFinalPriceText"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/checkoutFinalPriceText"
             app:layout_constraintVertical_bias="0.0"
             tools:text="800" />
@@ -181,29 +183,18 @@
             android:id="@+id/checkoutConfirm"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:background="@color/colorPrimary"
+            android:layout_marginStart="78dp"
+            android:layout_marginLeft="78dp"
+            android:layout_marginEnd="78dp"
+            android:layout_marginRight="78dp"
+            android:layout_marginBottom="8dp"
+            android:background="?attr/colorPrimary"
             android:text="@string/checkoutConfirm"
-            android:textColor="@android:color/white"
-            android:textSize="18sp"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
-
-        <ImageView
-            android:id="@+id/checkoutBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/checkoutHeader"
-            app:layout_constraintEnd_toStartOf="@+id/checkoutHeader"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/checkoutHeader"
-            app:srcCompat="@drawable/ic_arrow_back" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/checkoutPaymentType"
@@ -212,7 +203,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
             android:layout_marginTop="24dp"
-            android:text="Способ оплаты"
+            android:text="@string/paymentType"
             android:textColor="@android:color/black"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -233,13 +224,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:text="Наличными при получении" />
+                android:text="@string/cashPaymentType" />
 
             <RadioButton
                 android:id="@+id/rbCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Картой при получении" />
+                android:text="@string/cardPaymentType" />
         </RadioGroup>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

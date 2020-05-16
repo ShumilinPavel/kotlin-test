@@ -8,5 +8,5 @@ import moxy.viewstate.strategy.StateStrategyType
 interface DetailedView : MvpView {
 
     @StateStrategyType(AddToEndSingleStrategy::class)
-    fun setAttributeItems(attribtes: List<Product.Attribute>)
+    fun setAttributeItems(attributes: List<Product.Attribute>)
 }

@@ -10,7 +10,6 @@ import com.example.pavel_shumilin_shop.domain.model.Product
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_cart.*
 
-
 class CartProductsAdapter(
     private val onDeleteClick: (product: Product) -> (Unit),
     private val onProductClick: (product: Product) -> (Unit)

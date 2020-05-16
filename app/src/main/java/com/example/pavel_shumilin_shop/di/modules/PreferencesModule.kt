@@ -2,8 +2,8 @@ package com.example.pavel_shumilin_shop.di.modules
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.example.pavel_shumilin_shop.data.ViewedProductDaoImpl
-import com.example.pavel_shumilin_shop.domain.ViewedProductDao
+import com.example.pavel_shumilin_shop.data.SavedToCartProductsDaoImpl
+import com.example.pavel_shumilin_shop.domain.SavedToCartProductsDao
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -18,6 +18,6 @@ class PreferencesModule {
 
     @Provides
     @Singleton
-    fun provideViewedProduct(preferences: SharedPreferences): ViewedProductDao =
-        ViewedProductDaoImpl(preferences)
+    fun provideSavedToCartProductsDao(preferences: SharedPreferences): SavedToCartProductsDao =
+        SavedToCartProductsDaoImpl(preferences)
 }

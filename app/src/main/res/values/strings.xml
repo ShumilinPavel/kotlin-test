@@ -20,4 +20,9 @@
     <string name="some_text">someText</string>
     <string name="price">Цена</string>
     <string name="catalogCartButton">Корзина</string>
+    <string name="paymentType">Способ оплаты</string>
+    <string name="cashPaymentType">Наличными при получении</string>
+    <string name="cardPaymentType">Картой при получении</string>
+    <string name="addToCart">Добавить в корзину</string>
+    <string name="cart">Cart</string>
 </resources>

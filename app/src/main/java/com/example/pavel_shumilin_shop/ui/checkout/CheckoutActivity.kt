@@ -14,49 +14,28 @@ import com.example.pavel_shumilin_shop.ui.detailed.DetailedActivity.Companion.PR
 import kotlinx.android.synthetic.main.checkout_layout.*
 import moxy.ktx.moxyPresenter
 
-class CheckoutActivity : BaseActivity(),
-    CheckoutView {
+class CheckoutActivity : BaseActivity(), CheckoutView {
+
     private val presenter by moxyPresenter { CheckoutPresenter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.checkout_layout)
 
+        setToolbar()
         setListeners()
+        setAmounts()
+    }
 
-//        val factory = CartProductFactory()
-//
-//        val products = listOf(
-//            factory.createCartProduct(1, "IPhone Case", "image_url", 123.5, 30),
-//            factory.createCartProduct(1, "Samsung Case", "image_url", 124.5, 15)
-//        )
-//
-        var initialPrice = 0.0
-        var discountPrice = 0.0
-//        products.forEach {
-//            initialPrice += it.lot.price
-//            discountPrice += it.lot.calcDiscountPrice()
-//        }
-//
-//        checkoutProductsPrice.text = initialPrice.toString()
-//        checkoutFinalPrice.text = discountPrice.toString()
-//        checkoutSaleAmount.text = (initialPrice - discountPrice).toString()
-        val productsInOrder = intent?.getParcelableArrayListExtra<Product>(PRODUCT_TAG) ?: return
-        productsInOrder.forEach {
-            initialPrice += it.price
-            discountPrice += it.calcDiscountPrice()
+    private fun setToolbar() {
+        setSupportActionBar(checkout_toolbar)
+        checkout_toolbar.setNavigationOnClickListener {
+            finish()
         }
-        val formatter = PriceFormatter()
-        checkoutProductsPrice.text = formatter.format(initialPrice)
-        checkoutFinalPrice.text = formatter.format(discountPrice)
-        checkoutSaleAmount.text = formatter.format(initialPrice - discountPrice)
+        supportActionBar?.title = "Подтверждение заказа"
     }
 
     private fun setListeners() {
-        checkoutBack.setOnClickListener {
-            finish()
-        }
-
         checkoutSurname.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                presenter.checkSurname(s.toString())
@@ -86,13 +65,23 @@ class CheckoutActivity : BaseActivity(),
 //        }
     }
 
-//    override fun print(price: Double) {
-//        Log.d("Print", "$price")
-//    }
-//
-//    override fun print(message: String) {
-//        Log.d("Print", message)
-//    }
+    private fun setAmounts() {
+        var initialPrice = 0.0
+        var discountPrice = 0.0
+
+        val productsInOrder = intent?.getParcelableArrayListExtra<Product>(PRODUCT_TAG) ?: return
+
+        productsInOrder.forEach {
+            initialPrice += it.price
+            discountPrice += it.calcDiscountPrice()
+        }
+
+        val formatter = PriceFormatter()
+
+        checkoutProductsPrice.text = formatter.format(initialPrice)
+        checkoutFinalPrice.text = formatter.format(discountPrice)
+        checkoutSaleAmount.text = formatter.format(initialPrice - discountPrice)
+    }
 
     override fun showErrorForSurname(visible: Boolean) {
         checkoutSurname.showError(visible)

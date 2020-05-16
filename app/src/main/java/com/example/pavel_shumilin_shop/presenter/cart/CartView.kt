@@ -20,8 +20,11 @@ interface CartView : MvpView {
     fun showProductDetailed(product: Product)
 
     @StateStrategyType(AddToEndSingleStrategy::class)
+    fun showCartCheckout(productsInCart: List<Product>)
+
+    @StateStrategyType(AddToEndSingleStrategy::class)
     fun showToastMessage(message: String)
 
     @StateStrategyType(AddToEndSingleStrategy::class)
-    fun goToCheckoutActivity(productsInCart: List<Product>)
+    fun showNoCartProductsTextView()
 }

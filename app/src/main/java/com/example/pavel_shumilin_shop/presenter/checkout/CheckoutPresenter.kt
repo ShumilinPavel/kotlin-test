@@ -7,19 +7,6 @@ import moxy.MvpPresenter
 @InjectViewState
 class CheckoutPresenter : MvpPresenter<CheckoutView>() {
 
-//    private val products: List<Product> = listOf(
-//        Product(
-//            price = 123.5,
-//            salePercent = 30,
-//            productName = "IPhone Case"
-//        ),
-//        Product(
-//            price = 124.5,
-//            salePercent = 15,
-//            productName = "Samsung Case"
-//        )
-//    )
-
     private val model = CreateOrderModel()
 
     fun checkSurname(text: String) {
@@ -48,29 +35,4 @@ class CheckoutPresenter : MvpPresenter<CheckoutView>() {
         val isSecondValidFormat = phoneNumber.length == 12 && phoneNumber.startsWith("+7")
         return (isNumeric) && (isFirstValidFormat || isSecondValidFormat)
     }
-
-
-
-
-//    fun printProductsInfo() {
-//        products.forEach {
-//            viewState.print("${it.getProductName()}: ${it.calcDiscountPrice()}")
-//        }
-//        printTotalPrice()
-//    }
-//
-//    /**
-//     * print total price of products from the shopping cart with the applied discount
-//     */
-//    fun printTotalPrice() {
-//        viewState.print(products.sumByDouble { it.calcDiscountPrice() })
-//    }
-//
-//    fun printProductNames() {
-//        products.forEach {
-//            viewState.print(it.getProductName())
-//        }
-//    }
-//
-//    fun getProducts(): List<Product> = products
 }

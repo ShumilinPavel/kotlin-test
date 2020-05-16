@@ -1,6 +1,5 @@
-package com.example.pavel_shumilin_shop.ui
+package com.example.pavel_shumilin_shop.ui.catalog
 
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,6 @@ import com.bumptech.glide.Glide
 import com.example.pavel_shumilin_shop.R
 import com.example.pavel_shumilin_shop.domain.model.Product
 import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.detailed_layout.*
 import kotlinx.android.synthetic.main.item_product.*
 
 

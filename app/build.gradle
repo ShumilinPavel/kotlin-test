@@ -76,4 +76,5 @@ dependencies {
     implementation "com.github.moxy-community:moxy-androidx:$moxy_version"
     implementation "com.github.moxy-community:moxy-ktx:$moxy_version"
     implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 }
