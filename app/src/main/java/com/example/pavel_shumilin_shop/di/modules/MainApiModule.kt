@@ -1,6 +1,5 @@
 package com.example.pavel_shumilin_shop.di.modules
 
-import android.content.Context
 import com.example.pavel_shumilin_shop.domain.MainApi
 import dagger.Module
 import dagger.Provides
